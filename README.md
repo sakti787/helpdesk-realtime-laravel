@@ -1,111 +1,159 @@
-# Helpdesk Realtime (Ticketing + Chat)
+# Helpdesk Realtime — Ticketing + Live Chat
 
-
-![alt text](image.png)
-
-
-A fullstack helpdesk platform with **ticket workflow** and **realtime chat** to help teams manage customer support efficiently.  
-Built with **Laravel**, **Inertia.js**, **Vue 3**, **Naive UI**, **REST API**, and **WebSockets**.
+A fullstack helpdesk system for handling customer support with **ticket workflow** and **realtime chat**. Built as a portfolio project to demonstrate **Laravel + Inertia + Vue 3 + Naive UI + WebSockets**.
 
 ---
 
-## ✨ Features
+## ✨ Highlights
 
-### Core
-- 🔐 Authentication (Laravel Breeze) + role-based access (**Admin / Agent / Customer**)
-- 🎫 Ticket management: create, list, detail, status updates
-- 🧑‍💻 Agent queue: **unassigned** / **assigned to me** / filtered tickets
-- 💬 Ticket chat (message thread per ticket)
+* **Role-based access**: Admin / Agent / Customer
+* **Ticket workflow**: create → assign/claim → update status → resolve/close
+* **Realtime chat per ticket** (WebSocket-ready)
+* **Agent queue dashboard** (unassigned / assigned / filtered)
+* **Audit trail ready** (ticket events)
 
-### Realtime
-- ⚡ Realtime messages via WebSockets (Broadcasting + Echo)
-- ⌨️ Typing indicator *(optional / in progress)*
-- ✅ Read receipt *(optional / in progress)*
-
-### Admin (optional / in progress)
-- 🗂️ Categories & SLA configuration
-- 📊 Basic reports (ticket volume, SLA breaches)
+> ✅ Designed to be easy to run locally (Laragon/MySQL). Live deployment is optional.
 
 ---
 
 ## 🧰 Tech Stack
 
 **Backend**
-- Laravel (PHP)
-- MySQL (Laragon)
-- Laravel Broadcasting (Pusher protocol compatible)
-- Queue (Database / Redis optional)
+
+* Laravel (PHP)
+* MySQL/MariaDB
+* Laravel Broadcasting (Pusher protocol compatible)
 
 **Frontend**
-- Inertia.js
-- Vue 3
-- Naive UI
-- Vite
+
+* Inertia.js
+* Vue 3
+* Naive UI
+* Vite
 
 ---
 
 ## 📌 Requirements
 
-- PHP 8.2+
-- Composer
-- Node.js 18+
-- MySQL/MariaDB (Laragon)
-- Git
+* PHP **8.2+**
+* Composer
+* Node.js **18+**
+* MySQL / MariaDB (Laragon recommended)
+* Git
 
 Optional:
-- Redis (queue / realtime scaling)
+
+* Redis (queue / scaling)
 
 ---
 
-## 🚀 Getting Started (Local Setup)
+## 🚀 Local Setup
 
-### 1) Clone repository
+### 1) Clone the repository
+
 ```bash
-git clone https://github.com/sakti787/helpdesk-realtime-laravel
+git clone <YOUR_REPO_URL>
 cd helpdesk
-2) Install dependencies
+```
+
+### 2) Install dependencies
+
+```bash
 composer install
 npm install
-3) Setup environment
-Copy .env.example to .env:
+```
 
+### 3) Environment configuration
+
+Copy `.env.example` to `.env`:
+
+```bash
 cp .env.example .env
 php artisan key:generate
-Update database config in .env:
+```
 
+Update database config inside `.env`:
+
+```env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=helpdesk
 DB_USERNAME=root
 DB_PASSWORD=
-4) Run migrations & seed demo users
+```
+
+### 4) Run migrations & seed demo users
+
+```bash
 php artisan migrate --seed
-5) Run the app
+```
+
+### 5) Run the app
+
 Terminal 1:
 
+```bash
 php artisan serve
+```
+
 Terminal 2:
 
+```bash
 npm run dev
-App will be available at:
+```
 
-http://127.0.0.1:8000
+Open:
 
-👤 Demo Accounts
-Password for all users: password
+* [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
-Role	Email
-Admin	admin@demo.com
-Agent	agent1@demo.com
-Agent	agent2@demo.com
-Customer	cust1@demo.com
-🔄 Ticket Status Flow
-OPEN → IN_PROGRESS → WAITING_CUSTOMER → RESOLVED → CLOSED
+---
 
-🧩 Project Structure (High-level)
+## 👤 Demo Accounts
+
+Password for all users: `password`
+
+| Role     | Email                                     |
+| -------- | ----------------------------------------- |
+| Admin    | [admin@demo.com](mailto:admin@demo.com)   |
+| Agent    | [agent1@demo.com](mailto:agent1@demo.com) |
+| Agent    | [agent2@demo.com](mailto:agent2@demo.com) |
+| Customer | [cust1@demo.com](mailto:cust1@demo.com)   |
+
+---
+
+## 🔄 Ticket Status Flow
+
+`OPEN → IN_PROGRESS → WAITING_CUSTOMER → RESOLVED → CLOSED`
+
+---
+
+## 📸 Screenshots / Demo
+
+Add your screenshots here (recommended for portfolio):
+
+* Agent Queue Dashboard
+* Ticket Detail + Chat
+* Customer Ticket List
+
+Suggested folder:
+
+* `public/projects/screenshots/`
+
+Example (markdown):
+
+```md
+![Agent Queue](public/projects/screenshots/agent-queue.png)
+![Ticket Chat](public/projects/screenshots/ticket-chat.png)
+```
+
+---
+
+## 🗺️ Project Structure (High-level)
+
+```txt
 app/
-  Events/              # broadcasting events (MessageSent, TicketAssigned, etc.)
+  Events/              # Broadcasting events (MessageSent, TicketAssigned, etc.)
   Http/
     Controllers/       # Tickets, Messages, Admin pages
     Middleware/        # Role middleware
@@ -121,42 +169,43 @@ resources/js/
 routes/
   web.php              # Inertia pages
   api.php              # REST API (optional)
-🧪 Testing (Optional)
-Run feature tests:
+```
 
+---
+
+## 📡 Realtime Notes
+
+This project is built to support realtime updates using Laravel Broadcasting (Pusher protocol compatible). If you enable a WebSocket server (e.g., soketi / laravel-websockets / Pusher), ticket chat can broadcast new messages to subscribed clients.
+
+> If you don’t need realtime for local demo, you can keep broadcasting driver as `log`.
+
+---
+
+## 🧪 Testing (Optional)
+
+```bash
 php artisan test
-📡 Realtime (WebSocket) Setup
-This project uses Laravel Broadcasting (Pusher protocol compatible).
+```
 
-Option A — Local WebSocket (recommended)
-You can use one of:
+---
 
-laravel-websockets package
+## 🛣️ Roadmap
 
-soketi (Pusher-compatible server)
+* [ ] Attachment upload on ticket chat
+* [ ] Typing indicator
+* [ ] Read receipts
+* [ ] SLA countdown + breach alert
+* [ ] Reports dashboard
+* [ ] Notification integration (email / WhatsApp gateway)
 
-Add your broadcasting credentials in .env based on your chosen server.
+---
 
-Option B — Pusher Cloud
-If you use Pusher:
+## 🤝 Contributing
 
-BROADCAST_DRIVER=pusher
-PUSHER_APP_ID=xxx
-PUSHER_APP_KEY=xxx
-PUSHER_APP_SECRET=xxx
-PUSHER_APP_CLUSTER=ap1
-🗺️ Roadmap
- Attachments upload on ticket chat
+PRs and suggestions are welcome (portfolio project).
 
- Typing indicator
+---
 
- Read receipts
+## 📄 License
 
- SLA countdown + breach alert
-
- Reports dashboard (charts)
-
- Notifications (email/WhatsApp gateway integration)
-
-
-Agent claims ticket → chat realtime → resolve ticket.
+MIT (or your preferred license).
