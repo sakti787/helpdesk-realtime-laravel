@@ -61,7 +61,7 @@ Optional:
 
 ### 1) Clone repository
 ```bash
-git clone <YOUR_REPO_URL>
+git clone https://github.com/sakti787/helpdesk-realtime-laravel
 cd helpdesk
 2) Install dependencies
 composer install
