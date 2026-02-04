@@ -1,5 +1,9 @@
 # Helpdesk Realtime — Ticketing + Live Chat
 
+
+![alt text](image.png)
+
+
 A fullstack helpdesk system for handling customer support with **ticket workflow** and **realtime chat**. Built as a portfolio project to demonstrate **Laravel + Inertia + Vue 3 + Naive UI + WebSockets**.
 
 ---
