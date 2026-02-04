@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --surface: 248 250 252;
+        --ink: 15 23 42;
+        --brand: 14 116 144;
+        --brand-strong: 8 51 68;
+        --accent: 249 115 22;
+    }
+
+    body {
+        font-family: 'Space Grotesk', ui-sans-serif, system-ui, -apple-system, sans-serif;
+        color: rgb(var(--ink));
+        background-color: rgb(var(--surface));
+    }
+}
+
+@layer components {
+    .app-shell {
+        background-image:
+            radial-gradient(circle at top left, rgba(14, 116, 144, 0.08), transparent 45%),
+            radial-gradient(circle at 20% 20%, rgba(249, 115, 22, 0.08), transparent 40%),
+            linear-gradient(180deg, rgba(248, 250, 252, 1), rgba(241, 245, 249, 1));
+        min-height: 100vh;
+    }
+
+    .glass-card {
+        background: rgba(255, 255, 255, 0.75);
+        border: 1px solid rgba(148, 163, 184, 0.3);
+        box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+        backdrop-filter: blur(12px);
+    }
+
+    .badge-dot {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+    }
+
+    .badge-dot::before {
+        content: '';
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 999px;
+        background: currentColor;
+        opacity: 0.6;
+    }
+}
